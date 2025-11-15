@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bytes Marketing | Panel de Prospección</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-black': '#111827', /* Negro/Gris muy oscuro para fondo de sidebar */
+                        'accent-green': '#10B981', /* Verde Esmeralda para acentos */
+                        'bg-cream': '#FAFAF9', /* Beige/Crema para el fondo principal */
+                        'card-bg': '#FFFFFF', /* Blanco puro para tarjetas */
+                        'accent-yellow': '#FCD34D',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Estilos personalizados para el panel */
+        body {
+            background-color: #FAFAF9; /* Color Beige/Crema */
+        }
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Sombra suave y moderna */
+        }
+        .tab-item {
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 0.5rem;
+            opacity: 0.85;
+            color: #E5E7EB; /* Gris claro */
+        }
+        .tab-item:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            opacity: 1;
+        }
+        .tab-active {
+            background-color: #1F2937; /* Un gris más oscuro para resaltar */
+            font-weight: 600;
+            border-left: 4px solid #10B981; /* Verde Esmeralda */
+            opacity: 1;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800">
+
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- Sidebar (Panel de Navegación) - Negro -->
+        <aside class="w-64 bg-primary-black p-4 shadow-2xl flex-shrink-0 hidden md:block">
+            <div class="text-2xl font-extrabold mb-10 text-center border-b pb-4 border-gray-700 text-white">
+                ⚡ Bytes Marketing
+            </div>
+            <nav class="space-y-2">
+                <a id="tab-dashboard" onclick="showTab('dashboard')" class="tab-item flex items-center tab-active">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/></svg>
+                    Visión y Proyección
+                </a>
+                <a id="tab-segmentacion" onclick="showTab('segmentacion')" class="tab-item flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Estrategia de Segmentación
+                </a>
+                <a id="tab-equipo" onclick="showTab('equipo')" class="tab-item flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+                    Organización del Equipo
+                </a>
+                <a id="tab-contacto" onclick="showTab('contacto')" class="tab-item flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="22 7 12 14 2 7"/></svg>
+                    Pitch de Valor
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Contenido Principal - Beige/Crema -->
+        <main class="flex-1 overflow-y-auto p-4 md:p-8">
+
+            <h1 class="text-3xl font-extrabold mb-6 text-primary-black md:hidden">Bytes Marketing</h1>
+            
+            <!-- Contenido 1: Visión y Proyección (Dashboard) -->
+            <section id="dashboard" class="content-tab">
+                <h2 class="text-3xl font-bold mb-6 text-primary-black border-b pb-2">Visión y Proyección - Enero 2026</h2>
+                
+                <!-- Resumen Ejecutivo (Fondo Negro/Verde) -->
+                <div class="bg-primary-black text-white p-6 rounded-xl card-shadow mb-8 border-l-4 border-accent-green">
+                    <p class="text-xl font-light">
+                        Objetivo: Alcanzar 20 nuevos contratos web/sistema con una estrategia de contacto enfocada en calidad, basada en 2 personas contactando a 5 negocios diarios (200 contactos/mes).
+                    </p>
+                </div>
+
+                <!-- Proyecciones (Métricas Clave) - Estilo Widget -->
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                    
+                    <!-- Tarjeta 1: Leads -->
+                    <div class="bg-card-bg p-5 rounded-xl card-shadow border-t-4 border-primary-black">
+                        <p class="text-xs font-semibold uppercase text-gray-500 mb-1">Total de Contactos</p>
+                        <p class="text-4xl font-extrabold text-primary-black">200</p>
+                        <p class="text-sm text-gray-600 mt-1">Meta Mensual (2 personas x 5 diarios)</p>
+                    </div>
+
+                    <!-- Tarjeta 2: Respuestas -->
+                    <div class="bg-card-bg p-5 rounded-xl card-shadow border-t-4 border-accent-yellow">
+                        <p class="text-xs font-semibold uppercase text-gray-500 mb-1">Respuestas Positivas</p>
+                        <p class="text-4xl font-extrabold text-accent-yellow">40</p>
+                        <p class="text-sm text-gray-600 mt-1">Tasa de Respuesta: 20%</p>
+                    </div>
+
+                    <!-- Tarjeta 3: Cierres -->
+                    <div class="bg-card-bg p-5 rounded-xl card-shadow border-t-4 border-accent-green">
+                        <p class="text-xs font-semibold uppercase text-gray-500 mb-1">Contratos Cerrados</p>
+                        <p class="text-4xl font-extrabold text-accent-green">20</p>
+                        <p class="text-sm text-gray-600 mt-1">Tasa de Cierre Neta: 10%</p>
+                    </div>
+                    
+                    <!-- Tarjeta 4: Potencial de Crecimiento -->
+                    <div class="bg-card-bg p-5 rounded-xl card-shadow border-t-4 border-indigo-500">
+                        <p class="text-xs font-semibold uppercase text-gray-500 mb-1">Potencial Anual</p>
+                        <p class="text-4xl font-extrabold text-indigo-500">240+</p>
+                        <p class="text-sm text-gray-600 mt-1">Clientes / Year Proyectado</p>
+                    </div>
+                </div>
+
+                <!-- Gráfico de Embudo (Más Dinámico) -->
+                <div class="bg-card-bg p-6 rounded-xl card-shadow border border-gray-100">
+                    <h3 class="text-xl font-semibold mb-4 text-primary-black">Visualización del Embudo de Conversión</h3>
+                    
+                    <div class="flex flex-col items-center space-y-3">
+                        <!-- Nivel 1: Pool -->
+                        <div class="w-full p-3 bg-gray-200 text-primary-black text-center rounded-md font-medium">Pool: 1000 Negocios Aptos</div>
+                        <div class="w-1 h-6 bg-gray-300 transform rotate-180"></div>
+                        
+                        <!-- Nivel 2: Outreach -->
+                        <div class="w-4/5 p-3 bg-primary-black text-white text-center rounded-md font-medium">Outreach: 200 Contactos Mensuales</div>
+                        <div class="w-1 h-6 bg-gray-300 transform rotate-180"></div>
+
+                        <!-- Nivel 3: Calificación (Respuestas) -->
+                        <div class="w-3/5 p-3 bg-accent-yellow text-primary-black text-center rounded-md font-medium">Calificación: 40 Respuestas Positivas</div>
+                        <div class="w-1 h-6 bg-gray-300 transform rotate-180"></div>
+
+                        <!-- Nivel 4: Cierre (Clientes) -->
+                        <div class="w-2/5 p-3 bg-accent-green text-white text-center rounded-md font-bold shadow-lg">Éxito: 20 Contratos Cerrados</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contenido 2: Estrategia de Segmentación -->
+            <section id="segmentacion" class="content-tab hidden">
+                <h2 class="text-3xl font-bold mb-6 text-primary-black border-b pb-2">Estrategia de Segmentación - Criterios de Oro</h2>
+
+                <div class="bg-card-bg p-8 rounded-xl card-shadow mb-8 border-l-4 border-primary-black">
+                    <p class="text-lg text-gray-600">
+                        La estrategia se centra en la precisión. Solo contactamos a negocios que maximizan el potencial de cierre. Estos filtros aseguran que la necesidad de un sistema digital sea evidente e inmediata.
+                    </p>
+                </div>
+                
+                <!-- Criterios de Calificación (Grid de Tarjetas) -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Criterio 1: Sin Página Web -->
+                    <div class="bg-card-bg p-5 rounded-xl card-shadow border-t-4 border-red-500">
+                        <div class="text-3xl text-red-500 mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 11l.75-2.25M20.25 11l-.75-2.25M9 8h6M7 10h10M4 14h16"/></svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-1">Filtro #1: Sin Web Propia</h3>
+                        <p class="text-sm text-gray-600">Indicador clave de necesidad. El sitio web es la red para atrapar el tráfico existente.</p>
+                    </div>
+
+                    <!-- Criterio 2: Altas Calificaciones -->
+                    <div class="bg-card-bg p-5 rounded-xl card-shadow border-t-4 border-accent-yellow">
+                        <div class="text-3xl text-accent-yellow mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.219c.325-.97.97-.97 1.295 0l1.795 5.46a1 1 0 00.95.69h5.717c.88 0 1.23.606.88 1.48L17.75 14.73a1 1 0 00-.362.883l2.06 6.57c.28.892-.09 1.23-.97.88L12 18.01l-5.417 3.305c-.88.35-1.25-.018-.97-.88l2.06-6.57a1 1 0 00-.362-.883L2.358 8.85a.999.999 0 01.88-1.48h5.717a1 1 0 00.95-.69l1.795-5.46z"/></svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-1">Filtro #2: +4.0 Estrellas</h3>
+                        <p class="text-sm text-gray-600">Garantía de buen servicio/producto. Nuestra tarea es profesionalizar su presentación digital.</p>
+                    </div>
+
+                    <!-- Criterio 3: Varias Reseñas -->
+                    <div class="bg-card-bg p-5 rounded-xl card-shadow border-t-4 border-indigo-500">
+                        <div class="text-3xl text-indigo-500 mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.693C5.004 15.605 5 15.3 5 15c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-1">Filtro #3: +25 Reseñas</h3>
+                        <p class="text-sm text-gray-600">Demuestra actividad comercial y flujo de clientes, lo que justifica una inversión tecnológica.</p>
+                    </div>
+
+                    <!-- Criterio 4: Oportunidad de Sistema -->
+                    <div class="bg-card-bg p-5 rounded-xl card-shadow border-t-4 border-accent-green">
+                        <div class="text-3xl text-accent-green mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-6v6m-4-2v4m12 0H4a2 2 0 01-2-2V6a2 2 0 012-2h16a2 2 0 012 2v12a2 2 0 01-2 2z"/></svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-1">Filtro #4: Falta de Procesos</h3>
+                        <p class="text-sm text-gray-600">Se evalúa la oportunidad de ofrecer sistemas de reservas, inventario o gestión (CRM).</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contenido 3: Organización del Equipo -->
+            <section id="equipo" class="content-tab hidden">
+                <h2 class="text-3xl font-bold mb-6 text-primary-black border-b pb-2">Organización del Equipo (2 Personas)</h2>
+
+                <div class="bg-card-bg p-8 rounded-xl card-shadow mb-8 border-l-4 border-accent-green">
+                    <p class="text-lg text-gray-600">
+                        Estructura ágil y eficiente. Se dividen los roles para garantizar la máxima cantidad de contactos de calidad y el enfoque en el cierre de ventas.
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <!-- Rol 1: El Analista de Datos (Hunter) -->
+                    <div class="bg-card-bg p-6 rounded-xl card-shadow border-t-4 border-primary-black">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-primary-black text-white rounded-full p-3 mr-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 11l.75-2.25M20.25 11l-.75-2.25M9 8h6M7 10h10M4 14h16"/></svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-primary-black">Rol 1: Analista / Hunter</h3>
+                        </div>
+                        <p class="font-semibold mb-2 text-gray-700">Responsabilidad Principal: Prospección y Cualificación</p>
+                        <ul class="space-y-2 text-gray-700 list-disc list-inside">
+                            <li>Ejecutar la segmentación diaria (5 leads por persona, 10 en total).</li>
+                            <li>Investigar datos de contacto y realizar el primer acercamiento (Outreach).</li>
+                            <li>Preparar la base de datos (CRM) y el "Brief de Oportunidad" para el Closer.</li>
+                            <li>Mantener la meta de 200 contactos enviados mensualmente.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Rol 2: El Consultor de Ventas (Closer) -->
+                    <div class="bg-card-bg p-6 rounded-xl card-shadow border-t-4 border-accent-green">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-accent-green text-white rounded-full p-3 mr-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c1.657 0 3 .895 3 2s-1.343 2-3 2v5l-3 2v-5c-1.657 0-3-.895-3-2s1.343-2 3-2z"/></svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-accent-green">Rol 2: Consultor / Closer</h3>
+                        </div>
+                        <p class="font-semibold mb-2 text-gray-700">Responsabilidad Principal: Conversión y Propuestas</p>
+                        <ul class="space-y-2 text-gray-700 list-disc list-inside">
+                            <li>Gestionar las 40 respuestas positivas para convertirlas en reuniones.</li>
+                            <li>Realizar la consultoría, identificando el dolor del cliente.</li>
+                            <li>Diseñar la propuesta de valor (Web o Sistema).</li>
+                            <li>Negociación final y documentación del cierre del contrato.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Contenido 4: Pitch de Valor -->
+            <section id="contacto" class="content-tab hidden">
+                <h2 class="text-3xl font-bold mb-6 text-primary-black border-b pb-2">Pitch de Valor - El Contacto de Cierre</h2>
+
+                <div class="bg-card-bg p-8 rounded-xl card-shadow">
+                    <h3 class="text-2xl font-semibold mb-4 text-primary-black">Fórmula del Mensaje Inicial (WhatsApp o Email)</h3>
+                    <blockquote class="border-l-4 border-accent-yellow pl-4 italic text-gray-600 mb-6 bg-bg-cream p-4 rounded-lg">
+                        <p class="font-bold text-lg">Hola [Nombre del Dueño/Gerente],</p>
+                        <p>Felicidades por su excelente ficha de Google y sus [Número] reseñas con promedio de [Estrellas]! Es claro que ofrecen un servicio top.</p>
+                        <p>Solo quería señalarles que, al buscar [Servicio o Producto Principal], sus clientes llegan a su ficha, pero al no tener una web propia, el [% Estimado] se pierde al no poder [Acción Clave: ver menú, reservar, ver precios detallados].</p>
+                        <p>Somos expertos en [Tu Empresa] y queremos ayudarles a instalar ese motor de conversión. ¿Les gustaría ver un ejemplo rápido de cómo sería su sitio web?</p>
+                        <p>Saludos,</p>
+                        <p class="font-bold">El equipo [Tu Nombre/Empresa]</p>
+                    </blockquote>
+                    
+                    <h3 class="text-xl font-semibold mt-8 mb-4 text-accent-green">Puntos de Énfasis en la Reunión:</h3>
+                    <ul class="space-y-2 text-gray-700 list-disc list-inside">
+                        <li>Conexión: "Ya tienen el tráfico, les falta el destino."</li>
+                        <li>Independencia: "La web propia es seguridad contra cambios en Google/Redes."</li>
+                        <li>Eficiencia: "Un sistema a medida automatiza los procesos que hoy les hacen perder tiempo y clientes."</li>
+                    </ul>
+                </div>
+            </section>
+
+
+        </main>
+    </div>
+
+    <!-- Script para la navegación de pestañas y alerta -->
+    <script>
+        // Función de navegación de pestañas
+        function showTab(tabId) {
+            // Ocultar todos los contenidos y desactivar todos los botones
+            document.querySelectorAll('.content-tab').forEach(tab => {
+                tab.classList.add('hidden');
+            });
+            document.querySelectorAll('.tab-item').forEach(item => {
+                item.classList.remove('tab-active');
+            });
+
+            // Mostrar el contenido y activar el botón
+            const content = document.getElementById(tabId);
+            const button = document.getElementById('tab-' + tabId);
+
+            if (content) {
+                content.classList.remove('hidden');
+            }
+            if (button) {
+                button.classList.add('tab-active');
+            }
+        }
+
+        // Mostrar la pestaña por defecto al cargar
+        document.addEventListener('DOMContentLoaded', () => {
+            showTab('dashboard'); 
+        });
+
+
+        // Alerta personalizada (mantenida por la restricción de no usar alert())
+        function alert(message) {
+            const container = document.createElement('div');
+            container.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
+            container.innerHTML = `
+                <div class="bg-white p-6 rounded-xl shadow-2xl max-w-sm w-full text-center transform scale-90 transition-all duration-300 ease-out" id="custom-alert">
+                    <h4 class="text-xl font-bold text-primary-black mb-3">Mensaje del Sistema</h4>
+                    <p class="text-gray-700 mb-6">${message}</p>
+                    <button onclick="document.body.removeChild(this.closest('.fixed'))" class="bg-accent-green text-white px-6 py-2 rounded-lg hover:bg-emerald-600 transition">
+                        Entendido
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(container);
+            setTimeout(() => {
+                document.getElementById('custom-alert').classList.remove('scale-90');
+            }, 10);
+        }
+    </script>
+
+</body>
+</html>
