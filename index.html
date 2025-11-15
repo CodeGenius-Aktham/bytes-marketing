@@ -55,19 +55,63 @@
         }
 
         /* Ajuste para el encabezado en móvil para compensar el sidebar */
-        @media (max-width: 767px) {
-            .mobile-header-bar {
-                background-color: #111827;
-                color: white;
-                padding: 1rem;
-                text-align: center;
-                margin-bottom: 1.5rem;
-            }
+        .mobile-header-bar {
+            background-color: #111827;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos para el Menú Móvil (Drawer) */
+        .mobile-menu-panel {
+            /* Por defecto, fuera de la vista */
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-menu-visible .mobile-menu-panel {
+            /* Estado visible */
+            transform: translateX(0);
         }
     </style>
 </head>
 <body class="font-sans text-gray-800">
 
+    <!-- Mobile Menu Drawer (Overlay) - Visible solo en pantallas pequeñas -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 z-40 hidden md:hidden">
+        
+        <!-- Panel de Navegación Móvil -->
+        <div id="mobile-nav-panel" class="w-64 bg-primary-black h-full p-4 shadow-2xl mobile-menu-panel">
+            <div class="text-2xl font-extrabold mb-10 text-center pb-4 text-white border-b border-gray-700">
+                ⚡ Bytes Marketing
+            </div>
+            <nav class="space-y-2" onclick="toggleMobileMenu()">
+                <a id="mobile-tab-dashboard" onclick="showTab('dashboard')" class="tab-item flex items-center tab-active">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/></svg>
+                    Visión y Proyección
+                </a>
+                <a id="mobile-tab-segmentacion" onclick="showTab('segmentacion')" class="tab-item flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Estrategia de Segmentación
+                </a>
+                <a id="mobile-tab-equipo" onclick="showTab('equipo')" class="tab-item flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+                    Organización del Equipo
+                </a>
+                <a id="mobile-tab-contacto" onclick="showTab('contacto')" class="tab-item flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><polyline points="22 7 12 14 2 7"/></svg>
+                    Pitch de Valor
+                </a>
+            </nav>
+        </div>
+
+        <!-- Fondo Oscuro (Click para cerrar) -->
+        <div class="flex-1 bg-black opacity-50 transition-opacity duration-300" onclick="toggleMobileMenu()"></div>
+    </div>
+    
     <div class="flex h-screen overflow-hidden">
         
         <!-- Sidebar (Panel de Navegación) - Oculto en Móvil -->
@@ -99,8 +143,13 @@
         <main class="flex-1 overflow-y-auto">
 
             <!-- Barra de Título Móvil (Reemplaza el Sidebar) -->
-            <div class="md:hidden mobile-header-bar">
-                <h1 class="text-2xl font-extrabold">⚡ Bytes Marketing</h1>
+            <div class="md:hidden mobile-header-bar sticky top-0 z-30">
+                <!-- Botón de Menú (Hamburguesa) -->
+                <button onclick="toggleMobileMenu()" class="text-white p-2 rounded-lg hover:bg-gray-700 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+                </button>
+                <h1 class="text-xl font-extrabold">⚡ Bytes Marketing</h1>
+                <div class="w-6 h-6"></div> <!-- Espaciador para centrar el título -->
             </div>
 
             <div class="p-4 md:p-8">
@@ -154,15 +203,15 @@
                         <div class="flex flex-col items-center space-y-3">
                             <!-- Nivel 1: Pool -->
                             <div class="w-full p-3 bg-gray-200 text-primary-black text-center rounded-md text-sm md:text-base font-medium">Pool: 1000 Negocios Aptos</div>
-                            <div class="w-1 h-6 bg-gray-300 transform rotate-180"></div>
+                            <div class="w-1 h-6 bg-gray-300"></div>
                             
                             <!-- Nivel 2: Outreach -->
                             <div class="w-11/12 sm:w-4/5 p-3 bg-primary-black text-white text-center rounded-md text-sm md:text-base font-medium">Outreach: 200 Contactos Mensuales</div>
-                            <div class="w-1 h-6 bg-gray-300 transform rotate-180"></div>
+                            <div class="w-1 h-6 bg-gray-300"></div>
 
                             <!-- Nivel 3: Calificación (Respuestas) -->
                             <div class="w-9/12 sm:w-3/5 p-3 bg-accent-yellow text-primary-black text-center rounded-md text-sm md:text-base font-medium">Calificación: 40 Respuestas Positivas</div>
-                            <div class="w-1 h-6 bg-gray-300 transform rotate-180"></div>
+                            <div class="w-1 h-6 bg-gray-300"></div>
 
                             <!-- Nivel 4: Cierre (Clientes) -->
                             <div class="w-7/12 sm:w-2/5 p-3 bg-accent-green text-white text-center rounded-md text-sm md:text-base font-bold shadow-lg">Éxito: 20 Contratos Cerrados</div>
@@ -298,6 +347,28 @@
 
     <!-- Script para la navegación de pestañas y alerta -->
     <script>
+        // Referencias a los elementos del menú móvil
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const mobileNavPanel = document.getElementById('mobile-nav-panel');
+
+        // Función para alternar el menú móvil
+        function toggleMobileMenu() {
+            // Alterna la visibilidad del overlay
+            if (mobileMenuOverlay.classList.contains('hidden')) {
+                mobileMenuOverlay.classList.remove('hidden');
+                // Forzar un reflow para asegurar la transición
+                setTimeout(() => {
+                    mobileNavPanel.classList.remove('mobile-menu-panel');
+                }, 10);
+            } else {
+                mobileNavPanel.classList.add('mobile-menu-panel');
+                // Ocultar el overlay después de la transición
+                setTimeout(() => {
+                    mobileMenuOverlay.classList.add('hidden');
+                }, 300); // 300ms es la duración de la transición CSS
+            }
+        }
+
         // Función de navegación de pestañas
         function showTab(tabId) {
             // Ocultar todos los contenidos y desactivar todos los botones
@@ -308,15 +379,33 @@
                 item.classList.remove('tab-active');
             });
 
-            // Mostrar el contenido y activar el botón
+            // Desactivar botones de menú móvil
+            document.querySelectorAll('#mobile-menu-overlay .tab-item').forEach(item => {
+                item.classList.remove('tab-active');
+            });
+
+
+            // Mostrar el contenido y activar el botón de escritorio
             const content = document.getElementById(tabId);
-            const button = document.getElementById('tab-' + tabId);
+            const desktopButton = document.getElementById('tab-' + tabId);
+            const mobileButton = document.getElementById('mobile-tab-' + tabId);
+
 
             if (content) {
                 content.classList.remove('hidden');
+                // Asegura que al cambiar de pestaña el scroll vuelva al inicio del contenido principal
+                document.querySelector('main').scrollTop = 0;
             }
-            if (button) {
-                button.classList.add('tab-active');
+            if (desktopButton) {
+                desktopButton.classList.add('tab-active');
+            }
+            if (mobileButton) {
+                mobileButton.classList.add('tab-active');
+            }
+            
+            // Si está abierto el menú móvil, ciérralo al seleccionar una pestaña
+            if (!mobileMenuOverlay.classList.contains('hidden')) {
+                 toggleMobileMenu();
             }
         }
 
